@@ -21,6 +21,38 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = window.matchMedia('(pointer: coarse)').matches;
 
+    /* ── Pill choice gateway ── */
+    (function pillGate() {
+        const gate = document.getElementById('pillGate');
+        if (!gate) return;
+
+        // Skip the gate if the user already took the red pill this session.
+        if (sessionStorage.getItem('pill') === 'red') {
+            gate.remove();
+            document.body.classList.remove('gate-open');
+            return;
+        }
+
+        document.body.classList.add('gate-open');
+
+        gate.querySelectorAll('[data-pill]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const choice = btn.dataset.pill;
+
+                if (choice === 'blue') {
+                    window.location.href = 'blue.html';
+                    return;
+                }
+
+                // Red pill → stay, reveal the full site.
+                sessionStorage.setItem('pill', 'red');
+                gate.classList.add('hidden');
+                document.body.classList.remove('gate-open');
+                gate.addEventListener('transitionend', () => gate.remove(), { once: true });
+            });
+        });
+    })();
+
     /* ── Custom cursor ── */
     if (!isMobile) {
         const dot  = document.querySelector('.cursor-dot');

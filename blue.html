@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dogukan Kotan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #f7f8fa;
+            --card: #ffffff;
+            --text: #1a1d22;
+            --muted: #6b7280;
+            --line: #e5e7eb;
+            --blue: #2563eb;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.25rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .role {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p.bio {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .links a {
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: transform 0.15s ease, background 0.15s ease;
+        }
+
+        .links a:hover { transform: translateY(-2px); }
+
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-primary:hover { background: #1d4ed8; }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--line);
+        }
+        .btn-ghost:hover { background: #f3f4f6; }
+
+        .back {
+            margin-top: 1.75rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        .back a { color: #ff4466; text-decoration: none; font-weight: 500; }
+        .back a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <img src="images/me.jpeg" alt="Dogukan Kotan" class="avatar">
+        <h1>Dogukan Kotan</h1>
+        <p class="role">Computer Engineer · Istanbul</p>
+        <p class="bio">
+            Backend developer with 10+ years of experience. Python, FastAPI, Django.
+            Currently Senior Expert Software Developer at Innovance Consultancy.
+        </p>
+        <div class="links">
+            <a href="mailto:me@dogukankotan.com" class="btn-primary">Get in touch</a>
+            <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn-ghost">Download CV</a>
+            <a href="https://www.linkedin.com/in/dogukankotan/" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
+        </div>
+        <p class="back">
+            Took the blue pill. → <a href="index.html">Wake up.</a>
+        </p>
+    </main>
+</body>
+</html>

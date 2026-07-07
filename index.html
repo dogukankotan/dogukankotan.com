@@ -11,6 +11,29 @@
 </head>
 <body>
 
+    <!-- ── Pill choice gateway (Matrix) ── -->
+    <div class="pill-gate" id="pillGate" role="dialog" aria-modal="true" aria-labelledby="pillLine">
+        <div class="pill-rain" aria-hidden="true"></div>
+        <div class="pill-inner">
+            <p class="pill-prompt"><span class="prompt-char">$</span> ./wake_up.sh</p>
+            <p class="pill-line" id="pillLine">
+                This is your last chance. After this, there is no turning back.
+            </p>
+            <div class="pill-choices">
+                <button class="pill pill-red" data-pill="red" aria-label="Take the red pill — enter the full site">
+                    <span class="pill-cap"></span>
+                    <span class="pill-label">red pill</span>
+                    <span class="pill-sub">stay in wonderland</span>
+                </button>
+                <button class="pill pill-blue" data-pill="blue" aria-label="Take the blue pill — simple version">
+                    <span class="pill-cap"></span>
+                    <span class="pill-label">blue pill</span>
+                    <span class="pill-sub">the story ends</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom cursor -->
     <div class="cursor-dot"  aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"></div>

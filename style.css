@@ -724,3 +724,170 @@ footer {
     .hero-name { font-size: 1.8rem; }
     .scroll-hint { display: none; }
 }
+
+/* ═══════════════════════════════════════════════
+   Pill choice gateway (Matrix intro)
+   ═══════════════════════════════════════════════ */
+.pill-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    overflow: hidden;
+    transition: opacity 0.6s ease;
+}
+
+.pill-gate.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.gate-open { overflow: hidden; }
+
+/* Faint matrix-green rain wash behind the choice */
+.pill-rain {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 40%, rgba(0, 255, 135, 0.06), transparent 60%),
+        repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(0, 255, 135, 0.03) 22px, rgba(0, 255, 135, 0.03) 23px);
+    animation: pill-drift 12s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes pill-drift {
+    from { background-position: 0 0, 0 0; }
+    to   { background-position: 0 0, 0 400px; }
+}
+
+.pill-inner {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    max-width: 640px;
+    animation: pill-fade-in 0.9s ease both;
+}
+
+@keyframes pill-fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.pill-prompt {
+    color: var(--accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    opacity: 0.8;
+}
+
+.pill-line {
+    color: var(--text);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    margin-bottom: 2.6rem;
+    text-shadow: 0 0 18px rgba(0, 255, 135, 0.25);
+}
+
+.pill-choices {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1.6rem 1.8rem;
+    min-width: 190px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: inherit;
+    color: var(--text);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pill-cap {
+    display: block;
+    width: 88px;
+    height: 34px;
+    border-radius: 17px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Two-tone capsule look */
+.pill-red .pill-cap {
+    background: linear-gradient(135deg, #ff4466 0%, #ff4466 50%, #b31537 50%, #b31537 100%);
+    box-shadow: 0 0 16px rgba(255, 68, 102, 0.35);
+}
+
+.pill-blue .pill-cap {
+    background: linear-gradient(135deg, #4488ff 0%, #4488ff 50%, #1a4fb3 50%, #1a4fb3 100%);
+    box-shadow: 0 0 16px rgba(68, 136, 255, 0.35);
+}
+
+.pill-cap::after {
+    content: '';
+    position: absolute;
+    inset: 6px 14px auto 14px;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.pill-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.pill-sub {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+}
+
+.pill-red:hover,
+.pill-red:focus-visible {
+    border-color: var(--red);
+    box-shadow: 0 0 26px rgba(255, 68, 102, 0.25);
+    transform: translateY(-4px);
+    outline: none;
+}
+.pill-red:hover .pill-cap,
+.pill-red:focus-visible .pill-cap {
+    transform: scale(1.06);
+    box-shadow: 0 0 26px rgba(255, 68, 102, 0.6);
+}
+
+.pill-blue:hover,
+.pill-blue:focus-visible {
+    border-color: #4488ff;
+    box-shadow: 0 0 26px rgba(68, 136, 255, 0.25);
+    transform: translateY(-4px);
+    outline: none;
+}
+.pill-blue:hover .pill-cap,
+.pill-blue:focus-visible .pill-cap {
+    transform: scale(1.06);
+    box-shadow: 0 0 26px rgba(68, 136, 255, 0.6);
+}
+
+@media (max-width: 560px) {
+    .pill-line { font-size: 1.05rem; }
+    .pill-choices { gap: 1rem; }
+    .pill { min-width: 150px; padding: 1.3rem 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pill-rain { animation: none; }
+    .pill-inner { animation: none; }
+}

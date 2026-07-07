@@ -747,6 +747,11 @@ footer {
 
 body.gate-open { overflow: hidden; }
 
+/* Show the real cursor over the gate (custom cursor sits behind it) */
+.pill-gate,
+.pill-gate * { cursor: default; }
+.pill-gate .pill { cursor: pointer; }
+
 /* Faint matrix-green rain wash behind the choice */
 .pill-rain {
     position: absolute;

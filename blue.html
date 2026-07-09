@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dogukan Kotan</title>
+    <title>Dogukan Kotan — Senior Backend Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,6 +17,7 @@
             --muted: #6b7280;
             --line: #e5e7eb;
             --blue: #2563eb;
+            --blue-soft: #eff6ff;
         }
 
         body {
@@ -24,63 +25,201 @@
             color: var(--text);
             font-family: 'Inter', -apple-system, sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            padding: 3rem 1.25rem 4rem;
         }
 
-        .card {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 2.5rem;
-            max-width: 440px;
-            width: 100%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            text-align: center;
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* ── Header ── */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.75rem;
         }
 
         .avatar {
-            width: 96px;
-            height: 96px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 1.25rem;
-            display: block;
+            flex-shrink: 0;
         }
 
         h1 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
+            font-size: 1.55rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         .role {
             color: var(--muted);
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            margin-top: 0.15rem;
         }
 
-        p.bio {
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 1rem;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+        }
+
+        .contact-row a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-row a:hover { text-decoration: underline; }
+
+        /* ── Sections ── */
+        section {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        h2 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
             color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.75rem;
+            margin-bottom: 0.9rem;
         }
 
+        .summary { font-size: 0.95rem; color: #374151; }
+
+        /* ── Highlights ── */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .highlight {
+            background: var(--blue-soft);
+            border-radius: 10px;
+            padding: 0.75rem 0.9rem;
+        }
+
+        .highlight strong {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .highlight span {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* ── Experience ── */
+        .job { padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+        .job:first-of-type { padding-top: 0; }
+        .job:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .job-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .job-company { font-weight: 600; font-size: 0.98rem; }
+        .job-dates { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+
+        .job-role {
+            font-size: 0.9rem;
+            color: #374151;
+            margin-top: 0.15rem;
+        }
+
+        .promoted {
+            display: inline-block;
+            background: var(--blue-soft);
+            color: var(--blue);
+            font-size: 0.72rem;
+            font-weight: 600;
+            border-radius: 999px;
+            padding: 0.05rem 0.55rem;
+            margin-left: 0.4rem;
+            vertical-align: 1px;
+        }
+
+        .job-desc {
+            font-size: 0.87rem;
+            color: var(--muted);
+            margin-top: 0.35rem;
+        }
+
+        .job-prev {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 0.5rem;
+            padding-left: 0.9rem;
+            border-left: 2px solid var(--line);
+        }
+
+        /* ── Skills ── */
+        .skill-row {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 1rem;
+            padding: 0.45rem 0;
+            font-size: 0.88rem;
+        }
+
+        .skill-row dt { color: var(--muted); font-weight: 500; }
+        .skill-row dd { color: #374151; }
+
+        /* ── Footer grid: education / languages ── */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 540px) {
+            .meta-grid { grid-template-columns: 1fr; }
+            .skill-row { grid-template-columns: 1fr; gap: 0.1rem; }
+            .header { flex-direction: column; text-align: center; }
+            .contact-row { justify-content: center; }
+        }
+
+        .meta-item { font-size: 0.88rem; }
+        .meta-item .t { font-weight: 600; }
+        .meta-item .s { color: var(--muted); font-size: 0.82rem; }
+
+        ul.plain { list-style: none; }
+        ul.plain li { font-size: 0.88rem; color: #374151; padding: 0.15rem 0; }
+        ul.plain li::before { content: '✓ '; color: var(--blue); font-weight: 600; }
+
+        /* ── CTA ── */
         .links {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 0.65rem;
+            margin-top: 1.5rem;
         }
 
         .links a {
-            display: block;
-            padding: 0.8rem 1rem;
+            flex: 1 1 140px;
+            text-align: center;
+            padding: 0.75rem 1rem;
             border-radius: 10px;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 500;
             transition: transform 0.15s ease, background 0.15s ease;
         }
@@ -91,35 +230,154 @@
         .btn-primary:hover { background: #1d4ed8; }
 
         .btn-ghost {
-            background: transparent;
+            background: var(--card);
             color: var(--text);
             border: 1px solid var(--line);
         }
         .btn-ghost:hover { background: #f3f4f6; }
 
         .back {
-            margin-top: 1.75rem;
+            margin-top: 2rem;
             font-size: 0.8rem;
             color: var(--muted);
+            text-align: center;
         }
         .back a { color: #ff4466; text-decoration: none; font-weight: 500; }
         .back a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <main class="card">
-        <img src="images/me.jpeg" alt="Dogukan Kotan" class="avatar">
-        <h1>Dogukan Kotan</h1>
-        <p class="role">Computer Engineer · Istanbul</p>
-        <p class="bio">
-            Backend developer with 10+ years of experience. Python, FastAPI, Django.
-            Currently Senior Expert Software Developer at Innovance Consultancy.
-        </p>
+    <main class="page">
+
+        <div class="header">
+            <img src="images/me.jpeg" alt="Dogukan Kotan" class="avatar">
+            <div>
+                <h1>Dogukan Kotan</h1>
+                <p class="role">Senior Backend Engineer · Istanbul, Türkiye</p>
+                <div class="contact-row">
+                    <a href="mailto:me@dogukankotan.com">me@dogukankotan.com</a>
+                    <a href="https://github.com/dogukankotan" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.linkedin.com/in/dogukankotan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h2>Summary</h2>
+            <p class="summary">
+                Backend engineer with 10+ years of experience building large-scale systems in
+                banking/fintech and e-commerce. Python-first (FastAPI, Django). Currently at
+                Innovance Consultancy, leading backend architecture, mentoring engineers, and
+                owning delivery for enterprise clients. Deep focus on AI-assisted engineering —
+                Claude Code, MCP, Anthropic API.
+            </p>
+        </section>
+
+        <section>
+            <h2>At a glance</h2>
+            <div class="highlights">
+                <div class="highlight"><strong>10+ yrs</strong><span>backend engineering</span></div>
+                <div class="highlight"><strong>2 domains</strong><span>banking/fintech · e-commerce</span></div>
+                <div class="highlight"><strong>Team lead</strong><span>mentoring &amp; architecture</span></div>
+                <div class="highlight"><strong>AI-first</strong><span>Claude Code · MCP</span></div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Experience</h2>
+
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Innovance Consultancy</span>
+                    <span class="job-dates">Nov 2022 — Present</span>
+                </div>
+                <p class="job-role">Senior Expert Software Developer<span class="promoted">promoted Jul 2024</span></p>
+                <p class="job-desc">
+                    Leading backend architecture and delivery for enterprise banking/fintech and
+                    e-commerce clients — system design, mentoring, code review standards, client-facing
+                    technical communication.
+                </p>
+                <p class="job-prev">Previously: Senior Software Developer (Nov 2022 — Jul 2024) — backend services with Python, PostgreSQL, Redis, Kafka.</p>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Huawei</span>
+                    <span class="job-dates">Jun 2022 — Nov 2022</span>
+                </div>
+                <p class="job-role">Senior Software Engineer</p>
+                <p class="job-desc">Large-scale search infrastructure and data processing services for Petal Search R&amp;D.</p>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Akinon</span>
+                    <span class="job-dates">Jun 2021 — Jun 2022</span>
+                </div>
+                <p class="job-role">Senior Backend Engineer</p>
+                <p class="job-desc">Payment, shipment and campaign features on a high-traffic headless commerce platform serving global retail brands.</p>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Bon Intelligence</span>
+                    <span class="job-dates">Jun 2019 — Jun 2021</span>
+                </div>
+                <p class="job-role">Software Engineer Team Lead<span class="promoted">promoted Jun 2020</span></p>
+                <p class="job-desc">Led a team of 3 engineers building an AI/IoT analytics platform delivering consumer behavior insights to retail clients.</p>
+                <p class="job-prev">Previously: Software Development Specialist (Jun 2019 — Jun 2020) — IoT data ingestion and processing services.</p>
+            </div>
+
+            <div class="job">
+                <div class="job-head">
+                    <span class="job-company">Workif</span>
+                    <span class="job-dates">Jan 2017 — May 2019</span>
+                </div>
+                <p class="job-role">Full Stack Developer</p>
+                <p class="job-desc">SaaS product combining CRM and ERP capabilities for SMEs.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Skills</h2>
+            <dl>
+                <div class="skill-row"><dt>Python</dt><dd>FastAPI, Django, Flask, SQLAlchemy, Pydantic, Celery, Pytest</dd></div>
+                <div class="skill-row"><dt>Other backend</dt><dd>Go, Java, Spring Boot</dd></div>
+                <div class="skill-row"><dt>Data &amp; messaging</dt><dd>PostgreSQL, MySQL, Redis, MongoDB, RabbitMQ, Kafka, gRPC</dd></div>
+                <div class="skill-row"><dt>DevOps &amp; cloud</dt><dd>Docker, Kubernetes, Jenkins, GitLab CI, GitHub Actions, AWS, Azure, GCP</dd></div>
+                <div class="skill-row"><dt>AI engineering</dt><dd>Claude Code, OpenCode, MCP server development, Anthropic API, prompt engineering</dd></div>
+            </dl>
+        </section>
+
+        <section>
+            <div class="meta-grid">
+                <div>
+                    <h2>Education</h2>
+                    <p class="meta-item"><span class="t">B.S. Computer Engineering</span><br>
+                    <span class="s">İstanbul Şehir University · 2013 — 2017</span></p>
+                    <p class="meta-item" style="margin-top:0.6rem"><span class="t">B.S. Electrical &amp; Electronics Eng.</span><br>
+                    <span class="s">İstanbul Şehir University · 2015 — 2017 · double major</span></p>
+
+                    <h2 style="margin-top:1.25rem">Languages</h2>
+                    <p class="meta-item">Turkish — native<br>English — professional</p>
+                </div>
+                <div>
+                    <h2>Certifications</h2>
+                    <ul class="plain">
+                        <li>MCP: Advanced Topics</li>
+                        <li>Building with the Claude API</li>
+                        <li>Introduction to Claude Code</li>
+                        <li>Introduction to Agent Skills</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <div class="links">
             <a href="mailto:me@dogukankotan.com" class="btn-primary">Get in touch</a>
             <a href="cv.html" target="_blank" rel="noopener noreferrer" class="btn-ghost">Download CV</a>
-            <a href="https://www.linkedin.com/in/dogukankotan/" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
         </div>
+
         <p class="back">
             Took the blue pill. → <a href="index.html">Wake up.</a>
         </p>

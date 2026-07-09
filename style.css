@@ -620,6 +620,70 @@ section {
     line-height: 1.75;
 }
 
+/* ── Timeline: grouped company block (promotions) ── */
+.timeline-group .timeline-dot.main { background: var(--accent); }
+
+.timeline-company-header {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.1rem;
+    letter-spacing: -0.01em;
+}
+
+.timeline-range {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+}
+
+.timeline-role {
+    position: relative;
+    padding-left: 0.4rem;
+    margin-bottom: 1.4rem;
+}
+
+.timeline-role:last-child { margin-bottom: 0; }
+
+/* sub-dot sitting on the vertical track */
+.timeline-role::before {
+    content: '';
+    position: absolute;
+    left: calc(-1.5rem - 4.5px);
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid var(--muted);
+    background: var(--bg);
+    z-index: 1;
+    transition: background 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* horizontal connector from track to role text */
+.timeline-role::after {
+    content: '';
+    position: absolute;
+    left: calc(-1.5rem + 3px);
+    top: 9px;
+    width: calc(1.5rem - 8px);
+    height: 1px;
+    background: var(--border-dim);
+}
+
+.timeline-role.current::before,
+.timeline-role.head::before { border-color: var(--accent); }
+
+.timeline-role.current::before { background: var(--accent); }
+
+.timeline-role:hover::before {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.timeline-promoted { color: var(--accent); opacity: 0.9; }
+
 /* ── Contact ── */
 #contact { padding-bottom: 96px; }
 

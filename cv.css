@@ -10,12 +10,23 @@
     --dim:     #2a3a2a;
 }
 
-/* Force background color in print */
-* { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+/* Force background color in print (color-adjust is the legacy Firefox alias) */
+* { -webkit-print-color-adjust: exact; color-adjust: exact; print-color-adjust: exact; }
 
 @page {
     size: A4;
     margin: 0;
+}
+
+/* Firefox never prints html/body backgrounds (they propagate to the page
+   canvas, which is always white in print). Paint the background from a
+   fixed layer instead — it repeats on every printed page. */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--bg);
 }
 
 body {
@@ -36,9 +47,9 @@ body {
     grid-template-columns: 1fr auto;
     align-items: start;
     gap: 1rem;
-    padding-bottom: 7mm;
+    padding-bottom: 5mm;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 7mm;
+    margin-bottom: 5mm;
 }
 
 .cv-name {
@@ -81,8 +92,8 @@ body {
     font-weight: 700;
     letter-spacing: 0.1em;
     color: var(--muted);
-    margin-bottom: 4mm;
-    margin-top: 5mm;
+    margin-bottom: 3mm;
+    margin-top: 3.5mm;
     display: block;
 }
 
@@ -92,7 +103,7 @@ body {
 .right .label:first-child { margin-top: 0; }
 
 /* ── Skill tags ── */
-.skill-group { margin-bottom: 3.5mm; }
+.skill-group { margin-bottom: 2.5mm; }
 
 .skill-group-name {
     font-size: 7pt;
@@ -134,7 +145,7 @@ hr {
     display: grid;
     grid-template-columns: 6px 1fr;
     gap: 0 4mm;
-    margin-bottom: 5mm;
+    margin-bottom: 4mm;
     page-break-inside: avoid;
 }
 
@@ -165,6 +176,73 @@ hr {
 
 .timeline-item:last-child .t-track { display: none; }
 
+/* ── Timeline: grouped company block (promotions) ── */
+.timeline-group {
+    display: grid;
+    grid-template-columns: 6px 1fr;
+    gap: 0 4mm;
+    margin-bottom: 4mm;
+    page-break-inside: avoid;
+}
+
+.t-dot.main { background: var(--accent); }
+
+.t-company-header {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.t-range {
+    font-size: 7pt;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+}
+
+.t-role {
+    position: relative;
+    margin-top: 2mm;
+    padding-left: 2mm;
+}
+
+/* sub-dot sitting on the vertical track */
+.t-role::before {
+    content: '';
+    position: absolute;
+    left: calc(-4mm - 6px);
+    top: 3px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    border: 1px solid var(--muted);
+    background: var(--bg);
+}
+
+/* horizontal connector from track to role text */
+.t-role::after {
+    content: '';
+    position: absolute;
+    left: -4mm;
+    top: 6px;
+    width: calc(4mm + 1mm);
+    height: 1px;
+    background: var(--border);
+}
+
+.t-role.current::before {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.t-role.head::before { border-color: var(--accent); }
+
+.t-promoted {
+    color: var(--accent);
+    opacity: 0.9;
+}
+
 .t-meta {
     font-size: 7pt;
     color: var(--muted);
@@ -191,14 +269,14 @@ hr {
 .t-desc {
     font-size: 7.5pt;
     color: #5a7a5a;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* ── About ── */
 .about-text {
-    font-size: 8.5pt;
+    font-size: 8pt;
     color: #7a9a7a;
-    line-height: 1.7;
+    line-height: 1.55;
 }
 
 /* ── Vibe Coding block ── */
@@ -209,15 +287,25 @@ hr {
     background: var(--surface);
     font-size: 7.5pt;
     color: #5a7a5a;
-    line-height: 1.7;
+    line-height: 1.55;
     page-break-inside: avoid;
 }
 
 .vibe-block .p  { color: var(--muted); }
 .vibe-block .hl { color: var(--accent); }
 
+/* ── Bottom grid: education + certifications side by side ── */
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 6mm;
+    page-break-inside: avoid;
+}
+
+.bottom-grid .label { margin-top: 1mm; }
+
 /* ── Education ── */
-.edu-item { margin-bottom: 3.5mm; }
+.edu-item { margin-bottom: 2.5mm; }
 .edu-item:last-child { margin-bottom: 0; }
 
 .edu-degree {
@@ -241,10 +329,25 @@ hr {
 .cert-item {
     font-size: 7.5pt;
     color: #5a7a5a;
-    line-height: 1.7;
+    line-height: 1.55;
 }
 
 .cert-item::before { content: '✓  '; color: var(--accent); }
+
+/* ── Languages ── */
+.lang-item {
+    font-size: 7.5pt;
+    color: #5a7a5a;
+    line-height: 1.7;
+}
+
+.lang-code {
+    color: var(--accent);
+    opacity: 0.8;
+}
+
+.lang-code::before { content: '['; opacity: 0.5; }
+.lang-code::after  { content: ']'; opacity: 0.5; }
 
 /* ── Print button (screen only) ── */
 .print-btn {
@@ -267,5 +370,12 @@ hr {
 
 @media print {
     .print-btn { display: none; }
-    body { padding: 12mm 14mm; }
+    /* Firefox: auto margins and an exact 297mm min-height cause the first
+       page to shift/overflow onto a second page due to rounding — pin the
+       body to the page box instead */
+    body {
+        padding: 12mm 14mm;
+        margin: 0;
+        min-height: auto;
+    }
 }
